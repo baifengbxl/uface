@@ -1,0 +1,232 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="../static/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="../static/css/unit.css">
+<link rel="stylesheet" type="text/css" href="../static/css/style-av-detail.css">
+<script type="text/javascript" src="../static/js/unit.js">
+</script>
+<title>优face科技有限公司</title>
+</head>
+<body onload="startTime()">
+    <div class="head">
+        <h2>优face科技有限公司</h2>
+        {% if login_user %}
+        <div class="head-right">
+            <span class="head-help">
+            <a href="{{ url_for('user_logout') }}">注销</a>
+            <a href="#">帮助</a>
+            </span>
+            <div id="head-time"></div>
+         </div>
+            {% else %}
+            <div class="head-right">
+            <span class="head-help">
+            <a href="{{ url_for('user_login') }}">登录</a>
+            <a href="{{ url_for('user_uregister') }}">注册</a>
+            <a href="#">帮助</a>
+            </span>
+            <div id="head-time"></div>
+         </div>
+        {% endif %}
+    </div>
+    <div id="navigation">
+      <nav role="navigation">
+      <ul>
+            <a href="{{ url_for('main_personal')}}"><li>首页</li></a>
+            <a href="{{ url_for('personal_main') }}"><li>个人信息</li></a>
+            <a href="{{ url_for('personal_check') }}"><li>考勤记录</li></a>
+            <a href="{{ url_for('personal_vocationmange') }}"><li class="li-active">请假管理</li></a>
+          </ul>
+    </nav>
+    </div>
+    <div class="left-list">
+      <a href="{{ url_for('personal_vocationmange') }}"><div class="left-child">申请日志</div></a>
+        <a href="{{ url_for('pv_apply') }}"><div class="left-child">申请</div></a>
+    </div>
+    <div class="right">
+        <span class="title-bar">请假管理<i class="fa fa-angle-right" style="letter-spacing:2px;"></i>详细信息</span>
+        <div class="form-group">
+          <label for="name" class="col-sm-2 control-label">姓名</label>
+          <div class="col-sm-10">
+             <input type="text" class="form-control" id="lastname" placeholder="姓名">
+          </div>
+          <label for="name" class="col-sm-2 control-label">部门</label>
+          <div class="col-sm-10">
+             <input type="text" class="form-control" id="lastname" placeholder="部门">
+          </div>
+          <label for="name" class="col-sm-2 control-label">申请理由</label>
+          <div class="col-sm-10">
+             <textarea class="form-control" rows="4"></textarea>
+          </div>
+          <label for="name" class="col-sm-2 control-label">起始时间</label>
+        <div class="col-sm-10" style="width:24%;float:left;">
+          <select class="form-control" style="width:60%;float:left;">
+            <option>2000</option>
+            <option>2001</option>
+            <option>2002</option>
+            <option>2003</option>
+            <option>2004</option>
+            <option>2005</option>
+            <option>2006</option>
+            <option>2007</option>
+            <option>2008</option>
+            <option>2009</option>
+            <option>2010</option>
+            <option>2011</option>
+            <option>2012</option>
+            <option>2013</option>
+            <option>2014</option>
+            <option>2015</option>
+          </select>
+          <span style="float:right;margin:15px 40px 0 0;">年</span>
+        </div>
+        <div class="col-sm-10" style="width:24%;float:left;">
+          <select class="form-control" style="width:60%;float:left;">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+            <option>10</option>
+            <option>11</option>
+            <option>12</option>
+          </select>
+          <span style="float:right;margin:15px 40px 0 0;">月</span>
+        </div>
+        <div class="col-sm-10" style="width:24%;float:left;">
+          <select class="form-control" style="width:60%;float:left;">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+            <option>10</option>
+            <option>11</option>
+            <option>12</option>
+            <option>13</option>
+            <option>14</option>
+            <option>15</option>
+            <option>16</option>
+            <option>17</option>
+            <option>18</option>
+            <option>19</option>
+            <option>20</option>
+            <option>21</option>
+            <option>22</option>
+            <option>23</option>
+            <option>24</option>
+            <option>25</option>
+            <option>26</option>
+            <option>27</option>
+            <option>28</option>
+            <option>29</option>
+            <option>30</option>
+          </select>
+          <span style="float:right;margin:15px 40px 0 0;">日</span>
+        </div>
+        <div class="clear"></div>
+        <label for="name" class="col-sm-2 control-label">终止时间</label>
+        <div class="col-sm-10" style="width:24%;float:left;">
+          <select class="form-control" style="width:60%;float:left;">
+            <option>2000</option>
+            <option>2001</option>
+            <option>2002</option>
+            <option>2003</option>
+            <option>2004</option>
+            <option>2005</option>
+            <option>2006</option>
+            <option>2007</option>
+            <option>2008</option>
+            <option>2009</option>
+            <option>2010</option>
+            <option>2011</option>
+            <option>2012</option>
+            <option>2013</option>
+            <option>2014</option>
+            <option>2015</option>
+          </select>
+          <span style="float:right;margin:15px 40px 0 0;">年</span>
+        </div>
+        <div class="col-sm-10" style="width:24%;float:left;">
+          <select class="form-control" style="width:60%;float:left;">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+            <option>10</option>
+            <option>11</option>
+            <option>12</option>
+          </select>
+          <span style="float:right;margin:15px 40px 0 0;">月</span>
+        </div>
+        <div class="col-sm-10" style="width:24%;float:left;">
+          <select class="form-control" style="width:60%;float:left;">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+            <option>10</option>
+            <option>11</option>
+            <option>12</option>
+            <option>13</option>
+            <option>14</option>
+            <option>15</option>
+            <option>16</option>
+            <option>17</option>
+            <option>18</option>
+            <option>19</option>
+            <option>20</option>
+            <option>21</option>
+            <option>22</option>
+            <option>23</option>
+            <option>24</option>
+            <option>25</option>
+            <option>26</option>
+            <option>27</option>
+            <option>28</option>
+            <option>29</option>
+            <option>30</option>
+          </select>
+          <span style="float:right;margin:15px 40px 0 0;">日</span>
+        </div>
+        <div class="clear"></div>
+        <label for="name" class="col-sm-2 control-label">审核</label>
+        <div class="col-sm-10">
+          <select class="form-control">
+            <option>待处理</option>
+            <option>批准</option>
+            <option>不批准</option>
+          </select>
+        </div>
+        <label for="name" class="col-sm-2 control-label">通过理由</label>
+          <div class="col-sm-10">
+             <textarea class="form-control" rows="5"></textarea>
+          </div>
+        <div class="clear"></div>
+        <div class="ensure">
+          <button class="btn btn-default" style="padding:6px 40px;">确定</button>
+        </div>
+        </div>
+    </div>
+</body>

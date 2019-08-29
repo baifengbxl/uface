@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js">
+</script>
+
+<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="../static/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="../static/css/unit.css">
+<link rel="stylesheet" type="text/css" href="../static/css/style-personal.css">
+<script type="text/javascript" src="../static/js/unit.js">
+</script>
+<title>优face科技有限公司</title>
+
+
+    <style type="text/css">
+       .body{
+	    background:url('../static/images/10.jpg')  no-repeat center center;
+	    background-size:cover;
+	    background-attachment:fixed;
+	    background-color:#CCCCCC;
+
+
+}
+</style>
+</head>
+
+<!-- <body onload="startTime()" class="body"> -->
+<div class="head-right">
+    		<span class="head-help">
+             <a href="#">帮助</a>
+        </span>
+    		<div id="head-time"></div>
+    	</div>
+<body onload="startTime()"  class="body">
+  <div class="head">
+    	<h2>优face科技有限公司</h2>
+    </div>
+    <div id="navigation">
+    	<nav role="navigation">
+		  <ul>
+            <a href="{{ url_for('main_personal') }}"><li class="li-active">首页</li></a>
+            <a href="{{ url_for('personal_main') }}" ><li>个人信息</li></a>
+            <a href="{{ url_for('personal_check') }}"><li>考勤记录</li></a>
+            <a href="{{ url_for('personal_vocationmange') }}"><li>请假管理</li></a>
+{#              <button style="padding:0 10px; margin:10px 60px 0 0; float:right;">#}
+{#                  <a href="/qiandao" class="qiandaos"  style="text-decoration: none;">未签到</a></button>#}
+		  </ul>
+		</nav>
+    </div>
+    <div class="left" style="height: 384px;background:url('../static/images/6.jpg');">
+
+    	<span class="title-bar" style="font-size: 20px; margin-left: 20px;">欢迎来到考勤系统</span><br/>
+    	<img src="../static/images/logo.jpg" style="margin:0px 0px 0px 0px;
+    				width: 200px;height: 200px; border-radius: 200px;">
+
+        {% if login_user %}
+            <div style="margin-left:40px; margin-top: 5px;"><a href="{{ url_for('user_doupdate') }}">用户名</a>：<span class="name">{{ login_user }}</span></div>
+{#    	<div style="margin-left:40px;color:#ee3422";>您好，欢迎来到考勤系统！</div>#}
+{#            <div style="margin-left:40px;  margin-top: 5px;">工号：<span class="identity">171101103</div>#}
+    	<div style="margin-left:40px;color:#ee3422; margin-top: 5px;" ><a href="{{ url_for('user_logout') }}">注销</a></div>
+            {% else %}
+            <div class="head-right">
+    		<span class="head-help">
+             <a href="{{ url_for('user_login') }}">登录</a>
+            <a href="{{ url_for('user_uregister') }}">注册</a>
+             <a href="#">帮助</a>
+        </span>
+    		<div id="head-time"></div>
+    	</div>
+        {% endif %}
+
+    </div>
+    <div class="right"  style="background:url('../static/images/10.jpg')  ;height: 385px; ">
+    	<div class="right-main">
+    		<span class="title-bar"  style="font-size: 20px;">公告</span><br/>
+    		<div class="line-block" style="font-size: 20px";>
+    			<ul>
+		    			<li><div class="title"><a class="normal" href="#" title="">优face科技有限公司规章制度</a></div><div class="date">10-14</div><div class="clear"></div></li>
+                        <li><div class="title"><a class="normal" href="https://www.tuputech.com/report/archives/1779" title="">人脸识别安全遭质疑，泄露的数据及其黑产业链何时制止</a></div><div class="date">10-14</div><div class="clear"></div></li>
+
+         <li><div class="title"><a class="normal" href="https://www.tuputech.com/report/archives/1767" title="">俄罗斯最大出租车公司Yandex推人脸识别技术 强制疲劳司机休息</a></div><div class="date">10-14</div><div class="clear"></div></li>
+
+         <li><div class="title"><a class="normal" href="https://www.tuputech.com/report/archives/1765" title="">5G时代到来 短视频或将迎来新一轮爆发</a></div><div class="date">10-14</div><div class="clear"></div></li>
+
+         <li><div class="title"><a class="normal" href="https://www.tuputech.com/report/archives/1756" title="">英媒：媲美人类水平的AI有望五年后问世</a></div><div class="date">10-14</div><div class="clear"></div></li>
+
+         <li><div class="title"><a class="normal" href="https://www.tuputech.com/report/archives/1735" title="">人脸识别算啥！AI识人已学会“从头到脚”</a></div><div class="date">10-14</div><div class="clear"></div></li>
+
+		    	</ul>
+    		</div>
+
+
+
+    	</div>
+    	<div class="right-other">
+	    	<div class="Calendar">
+			  <div id="idCalendarPre">&lt;&lt;</div>
+			  <div id="idCalendarNext">&gt;&gt;</div>
+			  <span id="idCalendarYear">2008</span>年 <span id="idCalendarMonth">8</span>月
+			  <table cellspacing="0">
+			    <thead>
+			      <tr>
+			        <td>日</td>
+			        <td>一</td>
+			        <td>二</td>
+			        <td>三</td>
+			        <td>四</td>
+			        <td>五</td>
+			        <td>六</td>
+			      </tr>
+			    </thead>
+			    <tbody id="idCalendar">
+			    </tbody>
+			  </table>
+			</div>
+			<div class="order">
+				<span class="title-bar"  style="font-size: 20px;">班次信息</span><br/>
+				<div class="order-detail">
+					<div style="margin:12px 0 12px 40px;">早班：<span style="float:right;margin-right:45px;">8:00-11:00</span></div>
+					<div style="margin:12px 0 12px 40px;">午班：<span style="float:right;margin-right:45px;">13:00-15:00</span></div>
+					<div style="margin:12px 0 12px 40px;">晚班：<span style="float:right;margin-right:45px;">15:00-17:00</span></div>
+				</div>
+			</div>
+		</div>
+<script language="JavaScript">
+
+var cale = new Calendar("idCalendar", {
+    SelectDay: new Date().setDate(10),
+    onSelectDay: function(o){ o.className = "onSelect"; },
+    onToday: function(o){ o.className = "onToday"; },
+    onFinish: function(){
+        $("idCalendarYear").innerHTML = this.Year; $("idCalendarMonth").innerHTML = this.Month;
+        var flag = [10,15,20];
+        for(var i = 0, len = flag.length; i < len; i++)
+        {
+            this.Days[flag[i]].href='javascript:void(0);'
+            this.Days[flag[i]].onclick="alert('日期是:"+this.Year+"/"+this.Month+"/"+flag[i]+"');return false;\">" + flag[i] ;
+        }
+    }
+});
+
+$("idCalendarPre").onclick = function(){ cale.PreMonth(); }
+$("idCalendarNext").onclick = function(){ cale.NextMonth(); }
+
+
+
+</SCRIPT>
+    	<div style="width:100%;height:1px;" class="clear"></div>
+    </div>
+</body>

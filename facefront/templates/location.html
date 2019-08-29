@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=PyOEGwxbO4dqGUjaRWWm24dUnalV3CaR"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/library/GeoUtils/1.2/src/GeoUtils_min.js"></script>
+
+<title>Uface定位</title>
+</head>
+
+{# <div id ='d' style="background-color: blue;#}
+{#        color: white;#}
+{#        width: 150px;#}
+{#        height:150px;#}
+{#        border-radius: 150px;#}
+{#        font-size: 25px;  position: "><a id='a' style="text-decoration: none;" href="{{ url_for('daka') }}"><span style="color: white;#}
+{#        line-height: 150px;#}
+{#        margin-left: 25px;">开始打卡 </span></a></div>;#}
+<style>
+    .p1{font-size: 20px}
+    .daka:hover{
+        color: #d58512;
+    }
+</style>
+<body >
+
+<span style="font-size: 40px;position: center;">欢迎来到打卡界面 ！</span>
+    <div id="allmap" style="width: 100%;height: 500px; margin-top: 8px;">
+    </div>
+    <p class="p1">当前位置:</p>
+    <p class="p1" id="msg"></p>
+    <p class="p1" id="result"></p>
+
+ <div id ='d'  style="
+        margin-top: -105px;
+        margin-left: 800px;
+        background-color: #5FEEEA;
+        color: white;
+        width: 200px;
+        height:200px;
+        border-radius: 200px;
+        box-shadow: 0 0 20px #bce8f1;
+        font-size: 30px;"><a id='a'class="daka" style="text-decoration: none;" href="{{ url_for('daka') }}"><span style="color: white;
+        line-height: 200px;
+        margin-left: 38px;">开始打卡 </span></a></div>;
+
+
+
+<script type="text/javascript">
+    // 百度地图API功能
+    var map = new BMap.Map("allmap");
+    var point1 = new BMap.Point(116.331012,39.996565); //默认中心为中科科仪6号楼
+    map.addOverlay(new BMap.Marker(new BMap.Point(116.331012,39.996565)));//标记公司
+    map.centerAndZoom(point1,200);//放大倍数
+    map.enableScrollWheelZoom(true);    //启用滚轮放大缩小
+
+
+
+
+    var geolocation = new BMap.Geolocation();
+    geolocation.getCurrentPosition(function(r){console.log(r.point);
+        if(this.getStatus() == BMAP_STATUS_SUCCESS){
+            var mk = new BMap.Marker(r.point);
+                map.addOverlay(mk);//标出所在地
+                map.panTo(r.point2);//地图中心移动
+            var point2 = new BMap.Point(r.point.lng,r.point.lat);//用所定位的经纬度查找所在地省市街道等信息
+
+            var gc = new BMap.Geocoder();
+            if(point2.lng>=116.330545 || point2.lng<=116.331652){
+                        if(point2.lat>=39.996305 || point2.lat<=39.996778){
+                            document.getElementById("result").innerHTML = '在打卡范围内可打卡';
+                            gc.getLocation(point2,function(rs){
+                    document.getElementById("msg").innerHTML = rs.address; });
+
+                        }else{
+                                                    document.getElementById("result").innerHTML = '不在打卡范围内不可打卡';
+                            gc.getLocation(point2,function(rs){
+                    document.getElementById("msg").innerHTML = rs.address;
+            });
+                        document.getElementById('d').innerHTML='不可打卡';
+                        document.getElementById('a').href='{{url_for('main_personal') }}';
+                        }
+                    }else{
+                                                document.getElementById("result").innerHTML = '不在打卡范围内不可打卡';
+                                                                gc.getLocation(point2,function(rs){
+                    document.getElementById("msg").innerHTML = rs.address;
+            });
+                        document.getElementById('d').innerHTML='不可打卡';
+                        document.getElementById('a').href='{{url_for('main_personal') }}';
+                                                                                        gc.getLocation(point2,function(rs){
+                    document.getElementById("msg").innerHTML = rs.address;
+            });
+                    }
+           // alert('您的位置：'+r.point.lng+','+r.point.lat); //弹出经纬度
+
+        }else {
+            alert('failed'+this.getStatus());
+        }
+    },
+        {enableHighAccuracy: true});
+
+
+    //画矩形
+    var polygon = new BMap.Polygon([
+      new BMap.Point(116.330546,39.996768),
+      new BMap.Point(116.331652,39.996778),
+      new BMap.Point(116.331645,39.996326),
+      new BMap.Point(116.330559,39.996305),
+      ], {strokeColor:"#00BFFF",fillColor:"#87CEFA", strokeWeight:5, strokeOpacity:0,fillOpacity:0,});
+    map.addOverlay(polygon);
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UFace注册</title>
+
+    <style type="text/css">
+
+        .table{
+
+            {#float: right;#}
+            {#margin-right: 15%;#}
+            position: center;
+        }
+
+        #img{
+
+                {#float: left;#}
+                {#background-position:left;#}
+
+            }
+
+        #sid{
+            display: inline;
+        }
+        h1{
+                text-align: center;
+                margin-top:45px;
+                font-size: 40px;
+                color: #5EBBEA;
+                text-shadow:2px 2px 2px #90DDEF;
+                font-weight: normal;
+            }
+
+            body{
+                background-color: #EAEAEA;
+                font-family: "微软雅黑",Arial,Verdana,Sans-serif;
+                text-align: center;
+                margin: 0 auto;
+                background:url('../static/images/8.jpg')  no-repeat center center;
+                background-size:cover;
+                background-attachment:fixed;
+                background-color:#CCCCCC;
+            }
+
+            div{
+                display: block;
+            }
+
+            .login-user,.login-pwd,.pwd-again,.login-tel{
+                position: relative;
+                margin: 0 auto;
+                width: 360px;
+                height: 50px;
+                margin-bottom: 12px;
+            }
+
+            .label-user,.label-pwd,.label-again,.lable-tel{
+                position: absolute;
+                top: 16px;
+                left: 10px;
+            }
+
+            .user,.pwd,.again,.tel,button{
+                width: 100%;
+                height: 100%;
+                padding: 0px 25px;
+                box-sizing: border-box;
+            }
+
+            .login{
+                 position: relative;
+                margin: 0 auto;
+                width: 360px;
+                height: 50px;
+                margin-bottom: 12px;
+                background: #0095cd;
+                color: #ffffff;
+                border:none;
+                font-size: 16px;
+                    }
+
+            button{
+            margin-top: 40px;
+            border:none;
+            color: #ffffff;
+            font-size: 16px;
+            border-radius: 3px;
+            background: #0095cd;
+            
+        }
+    </style>
+</head>
+<body >
+<div id="box">
+     <div id =img >
+{#    <img src="../static/images/spring.jpg" width="404" height="600">#}
+    </div>
+
+    <div class="table">
+        <h1>欢迎注册</h1>
+        <form method="get" action="doregister" name='tijiao' class="login-form" onsubmit="return checkname(),checkpassword1(),checkpassword2(),checktel()">
+        <div class="login-user">
+            <label class="label-user"><i class="fa fa-user"></i></label>
+            <input type="text" name="uname" id="uid" placeholder="请输入用户名/工号/邮箱"  class="user" onblur="checkname()">
+            <span id="sid"></span>
+        </div><br>
+
+        <div class="login-pwd">
+            <label class="label-pwd"><i class="fa fa-lock"></i></label>
+            <input type="password" name="upwd1" id="pid1" placeholder="请输入密码" class="pwd" onblur="checkpassword1()">
+            <span id="pd1"></span>
+        </div><br>
+
+        <div class="pwd-again">
+            <label class="label-again"><i class="fa fa-lock"></i></label>
+            <input type="password" name="upwd2" id="pid2" placeholder="再次输入密码" class="again" onblur="checkpassword2()">
+            <span id="pd2"></span>
+        </div><br>
+
+        <div class="login-tel">
+            <label class="lable-tel"><i class="fa fa-lock"></i></label>
+            <input type="text" name="uphone" id="telid" placeholder="请输入手机号" class="tel" onblur="checktel()">
+            <span id="tid"></span>
+        </div><br>
+
+        <div class="login">
+            <input type="submit" value="注册"  class="login" >
+        </div>
+    </form>
+    </div>
+
+
+    </div>
+
+<div>
+    {% for message in get_flashed_messages() %}
+     <div style="
+    position:fixed;
+    width:375px;
+    height:40px;
+    top:5%;
+    z-index: 1000;
+    {#display: none;#}
+    border-radius: 5px;
+    background-color:#ebebdb;
+    left:37%;
+    ">
+    <p style="
+       color: red;
+       font-size: 13px;
+       text-align: center;
+      ">Warning：{{ message }}</p >
+</div>
+
+    {% endfor %}
+
+</div>
+
+<script >
+
+
+    function checkname(){
+                var div = document.getElementById("sid");
+                div.style.color='red';
+
+                div.innerHTML = "";
+                var name1 = document.tijiao.uid.value;
+                if (name1 == "") {
+                div.innerHTML= "用户名不能为空";
+
+                return false;
+            }
+                if (name1.length > 16) {
+                div.innerHTML = "长度1-16个字符";
+
+                return false;
+            }
+                var charname1 = name1.toLowerCase();
+                for (var i = 0; i < name1.length; i++) {
+                var charname = charname1.charAt(i);
+                if (!(charname >= 0 && charname <= 9) && (!(charname >= 'a' && charname <= 'z')) && (charname != '_')&&(charname !='@'))
+                {
+                    div.innerHTML = "用户名包含非法字符";
+
+                    return false;
+                }
+            }
+                return true;
+        }
+
+        function checkpassword1()
+        {
+                var div = document.getElementById("pd1");
+                div.style.color='red';
+                div.innerHTML = "";
+                var password = document.tijiao.pid1.value;
+                if (password == "")
+                {
+                div.innerHTML = "密码不能为空";
+
+                return false;
+                }
+                if (password.length < 4 || password.length > 16)
+                {
+                div.innerHTML = "密码长度为4-16位";
+
+                return false;
+                }
+                return true;
+        }
+
+        function checkpassword2(){
+                var div = document.getElementById("pd2");
+                div.style.color='red';
+                div.innerHTML = "";
+                var password = document.tijiao.pid1.value;
+                var repass = document.tijiao.pid2.value;
+                if (repass == "") {
+                div.innerHTML = "密码不能为空";
+
+                return false;
+            }
+                if (password != repass)
+                {
+                div.innerHTML = "密码不一致";
+
+                return false;
+                }
+                return true;
+        }
+
+        function checktel(){
+                var div = document.getElementById("tid");
+                div.style.color='red';
+                div.innerHTML = "";
+                var tel = document.tijiao.telid.value;
+                if (tel == "")
+                {
+                div.innerHTML = "号码不能为空";
+
+                return false;
+                }
+                if (tel.length != 11) {
+                div.innerHTML = "长度为11个字符";
+
+                return false;
+            }
+        }
+
+
+</script>
+
+</div>
+
+
+</body>
+</html>

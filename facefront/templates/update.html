@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UFace信息更新</title>
+
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js">
+</script>
+
+
+    <script>
+$(document).ready(function(){
+  $("form").submit(function(){
+    alert("若修改成功,请注销后重新登录，即可更新个人信息");
+  });
+});
+</script>
+
+    <style type="text/css">
+
+        .table{
+
+            {#float: right;#}
+            {#margin-right: 15%;#}
+            position: center;
+        }
+
+        #img{
+
+                {#float: left;#}
+                {#background-position:left;#}
+
+            }
+
+        #sid{
+            display: inline;
+        }
+        h1{
+                text-align: center;
+                margin-top:45px;
+                font-size: 40px;
+                color: #5EBBEA;
+                text-shadow:2px 2px 2px #90DDEF;
+                font-weight: normal;
+            }
+
+            body{
+                background-color: #EAEAEA;
+                font-family: "微软雅黑",Arial,Verdana,Sans-serif;
+                text-align: center;
+                margin: 0 auto;
+                background:url('../static/images/10.jpg')  no-repeat center center;
+                background-size:cover;
+                background-attachment:fixed;
+                background-color:#CCCCCC;
+            }
+
+            div{
+                display: block;
+            }
+
+            .login-user,.login-pwd,.pwd-again,.login-tel{
+                position: relative;
+                margin: 0 auto;
+                width: 360px;
+                height: 50px;
+                margin-bottom: 12px;
+            }
+
+            .label-user,.label-pwd,.label-again,.lable-tel{
+                position: absolute;
+                top: 16px;
+                left: 10px;
+            }
+
+            .user,.pwd,.again,.tel,button{
+                width: 100%;
+                height: 100%;
+                padding: 0px 25px;
+                box-sizing: border-box;
+            }
+
+            .login{
+                 position: relative;
+                margin: 0 auto;
+                width: 360px;
+                height: 50px;
+                margin-bottom: 12px;
+                background: #0095cd;
+                color: #ffffff;
+                border:none;
+                font-size: 16px;
+                    }
+
+            button{
+            margin-top: 40px;
+            border:none;
+            color: #ffffff;
+            font-size: 16px;
+            border-radius: 3px;
+            background: #0095cd;
+
+        }
+    </style>
+</head>
+<body >
+<div id="box">
+     <div id =img >
+{#    <img src="../static/images/spring.jpg" width="404" height="600">#}
+    </div>
+
+    <div class="table">
+        <h1>用户：{{ login_user }}</h1>
+        <form method="get" action="update" class="login-form" >
+            <div class="login-user">
+            <label class="label-user"><i class="fa fa-user"></i></label>
+            <input type="text" name="username"  placeholder='用户名'  class="user" >
+            <span></span>
+        </div><br>
+        <div class="login-user">
+            <label class="label-user"><i class="fa fa-user"></i></label>
+            <input type="text" name="truename" id="uid" placeholder="请输入真实姓名"  class="user" >
+
+        </div><br>
+
+        <div class="login-pwd">
+            <label class="label-pwd"><i class="fa fa-lock"></i></label>
+            <input type="number" name="uage" id="pid1" placeholder="年龄" class="pwd" >
+
+        </div><br>
+
+        <div class="pwd-again">
+            <label class="label-again"><i class="fa fa-lock" style="font-size: 30px;"></i></label>
+            <input type="radio" name="usex"  value="male"  >男
+            <input type="radio" name="usex"   value='female'>女
+
+        </div><br>
+
+        <div class="login-tel">
+            <label class="lable-tel"><i class="fa fa-lock"></i></label>
+            <input type="text" name="ubirth" id="telid" placeholder="出生日期" class="tel" >
+
+        </div><br>
+
+        <div class="login">
+            <input type="submit" value="提交"  class="login"  >
+        </div>
+    </form>
+    </div>
+
+
+    </div>
+
+<div>
+
+</div>
+
+
+<div>
+    {% for message in get_flashed_messages() %}
+     <div style="
+    position:fixed;
+    width:375px;
+    height:40px;
+    top:2%;
+    z-index: 1000;
+    {#display: none;#}
+    border-radius: 5px;
+    background-color:#ebebdb;
+    left:37%;
+    ">
+    <p style="
+       color: red;
+       font-size: 13px;
+       text-align: center;
+      ">Warning：{{ message }}</p >
+</div>
+
+    {% endfor %}
+
+</div>
+
+<script >
+
+
+
+
+</script>
+
+</div>
+
+
+</body>
+</html>

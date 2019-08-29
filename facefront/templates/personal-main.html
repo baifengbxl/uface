@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+
+<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="../static/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="../static/css/unit.css">
+<link rel="stylesheet" type="text/css" href="../static/css/style-personal-main.css">
+<script type="text/javascript" src="../static/js/unit.js">
+</script>
+
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"> </script>
+    <script >$(function(){$('text').hide();});</script>
+
+<title>优face科技有限公司</title>
+</head>
+<body onload="startTime()">
+    <div class="head">
+        <h2>优face科技有限公司</h2>
+        {% if login_user %}
+        <div class="head-right">
+            <span class="head-help">
+            <a href="{{ url_for('user_logout') }}">注销</a>
+            <a href="#">帮助</a>
+            </span>
+            <div id="head-time"></div>
+         </div>
+            {% else %}
+            <div class="head-right">
+            <span class="head-help">
+            <a href="{{ url_for('user_login') }}">登录</a>
+            <a href="{{ url_for('user_uregister') }}">注册</a>
+            <a href="#">帮助</a>
+            </span>
+            <div id="head-time"></div>
+         </div>
+        {% endif %}
+    </div>
+    <div id="navigation">
+    	<nav role="navigation">
+		  <ul>
+		  	<a href="{{ url_for('main_personal') }}"><li>首页</li></a>
+		  	<a href="{{ url_for('personal_main') }}"><li class="li-active">个人信息</li></a>
+            <a href="{{ url_for('personal_check') }}"><li>考勤记录</li></a>
+		  	<a href="{{ url_for('personal_vocationmange') }}"><li>请假管理</li></a>
+		  </ul>
+		</nav>
+    </div>
+    <div class="pm-main">
+        <div class="title-bar-child">
+            基本信息
+        </div>
+        {% if login_user %}
+        <div class="base">
+            用户名：<span >{{ login_user }}</span>
+        </div>
+        <div class="base">
+            姓名：<span >{{ login_uname }}</span>
+
+        </div>
+        <div class="base">
+            年龄：<span >{{ login_uage }}</span>
+        </div>
+        <div class="base">
+            性别：<span >{{ login_usex }}</span>
+        </div>
+        <div class="base">
+            生日：<span >{{ login_ubirth }}</span>
+        </div>
+        <div class="base">
+            手机号：<span contenteditable="true">{{ login_utel }}</span>
+        </div>
+        <div class="pm-power">
+            <a href="#"></a>
+        </div>
+        <hr style="margin:0 60px 10px 40px;"/>
+        <div class="title-bar-child">
+            密码设置
+        </div>
+        <div class="pm-power">
+            密码：******（<a href="#">普通</a>）<a href="#">修改</a>
+        </div>
+        <div class="pm-power">
+
+        </div>
+
+        {% else %}
+                <div class="base">
+            姓名：<span>?</span>
+        </div>
+        <div class="base">
+            工号：<span>?</span>
+        </div>
+        <div class="base">
+            年龄：<span>?</span>
+        </div>
+        <div class="base">
+            性别：<span>?</span>
+        </div>
+        <div class="base">
+            生日：<span>?</span>
+        </div>
+        <div class="base">
+            手机号：<span>?</span>
+        </div>
+        <div class="pm-power">
+            <a href="#"></a>
+        </div>
+        <hr style="margin:0 60px 10px 40px;"/>
+        <div class="title-bar-child">
+            密码设置
+        </div>
+        <div class="pm-power">
+            密码：******（<a href="#">普通</a>）<a href="#">修改</a>
+        </div>
+        <div class="pm-power">
+
+        </div>
+        {% endif %}
+
+
+    </div>
+</body>
